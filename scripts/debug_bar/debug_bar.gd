@@ -84,6 +84,7 @@ func add_button(name: String, callback: Callable, category: String = "") -> void
 	is_dirty = true
 	set_process(true)
 
+## Returns a bool
 func add_toggle(name: String, bind: Callable, category: String = "") -> void:
 	_items.append({ "type": "toggle", "name": name, "category": category, "bind": bind })
 	is_dirty = true
@@ -96,7 +97,7 @@ func add_radio(name: String, group: String, bind: Callable, value: Variant, cate
 
 ## Not explicitly required, hard reserves category order. [br]
 ## Categories without items, will not appear
-func add_top_category(name: String, index: int) -> void:
+func add_root_category(name: String, index: int) -> void:
 	_custom_category_order[name] = index
 	
 	# Properly rebuild _custom_category_list
@@ -334,10 +335,10 @@ func _demo() -> void:
 	var volume := "Medium"
 	var fullscreen := false
 
-	add_top_category("File", 1)
-	add_top_category("Settings", 2)
-	add_top_category("Debug", 3)
-	add_top_category("Tools", 4)
+	add_root_category("File", 1)
+	add_root_category("Settings", 2)
+	add_root_category("Debug", 3)
+	add_root_category("Tools", 4)
 
 	add_button("Run", func(): print("Run"), "Debug")
 
